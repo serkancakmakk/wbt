@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- admin_area/parameter.html -->
+<h1>Parameters</h1>
+<div class="container">
+{% if parameter %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.management.label_tag }}
+        {{ form.management }}
+        <input type="submit" value="Kaydet">
+    </form>
+{% else %}
+    <p>Parametre bulunamadı.</p>
+{% endif %}
+</div>
+  {% endblock content %}

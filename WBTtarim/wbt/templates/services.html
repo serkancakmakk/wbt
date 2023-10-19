@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<head>
+  <link rel="stylesheet" href="{% static 'css/services.css' %}">
+</head>
+<div class="container mb-5 mt-5">
+  {% if request.session.lang_code == 'tr' %}
+    <div class="card-container">
+      {% for servis in servisler %}
+        <div class="card">
+          <img class="wbtimg" src="{{ servis.image.url }}" alt="Image">
+          <h2 class="card-title">{{servis.servis_adi_tr}}</h2>
+          <div class="overlay">
+            <div class="overlay-text">
+              <h2>asdasdasdasdasdasdasdasddsjflkdsjfkljadsflkjdsalkfjsdklfjdaslkfjdsklfjdslkajfalkdsjflkasdjflkjsadlkfjdslkafj</h2>
+              <p>{{servis.servis_bilgi_tr}}</p><br />
+              <a class="button" href="{% url 'servis_detay' 'tr' servis.id %}">Detaya Git</a>
+
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>
+{% if request.session.lang_code == 'en' %}
+<div class="card-container">
+      {% for service in services %}
+        <div class="card">
+          <img class="wbtimg" src="{{ service.image.url }}" alt="Image">
+          <h2 class="card-title">{{service.service_name_en}}</h2>
+          <div class="overlay">
+            <div class="overlay-text">
+              <h2>{{service.service_name_en}}</h2>
+              <p>{{service.service_info_en}}</p><br />
+              <button>Go Detail</button>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>
+</div> <!--End container-->
+
+{% endblock content %}

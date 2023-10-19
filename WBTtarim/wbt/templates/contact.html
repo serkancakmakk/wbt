@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<head>
+  <link rel="stylesheet" href="{% static 'css/contact.css' %}">
+</head>
+{% if request.session.lang_code == 'tr' %}
+<title> WBT | İletişim </title>
+{% else %}
+<title> WBT | Contact </title>
+{% endif %}
+
+<div class="container">
+    <div class="wrapper">
+        {% comment %} <img src="{% static 'img/farm.jpg' %}" alt="Resim Açıklaması"> {% endcomment %}
+        <ul class="dynamic-txt">
+          <li><span id="wbtSpan">WBT TARIM HERBS SPİCES</span></li>
+        </ul>
+      </div>
+    <div class="row">
+      {% for company in companies %}
+      {{company.google_maps|safe}}
+        {% endfor %}
+        <!-- Türkçe -->
+      {% if request.session.lang_code == 'tr' %}
+{% for company in companies %}
+      <!-- İkinci sütun (col) -->
+      <div class="row center">
+        <div class="box mr-4">
+          <h2><i class="fa fa-envelope" aria-hidden="true"></i></h2>
+          <h3 id="conText">Mail</h3>
+          <p>
+              {{company.Email}}
+          </p>
+      </div>
+      <div class="box mr-4">
+          <h2><i class="fa-solid fa-map-pin"></i></h2>
+          <h3 id="conText">Konum</h3>
+          <p>
+            {{company.Adres}}
+          </p>
+      </div>
+      <div class="box ">
+          <h2><i class="fa-solid fa-phone"></i></h2>
+          <h3 id="conText">Telefon</h3>
+          <p>
+            {{company.Telefon}}
+          </p>
+      </div>
+  </div>
+  </div>
+  {% endfor %}
+  {% else %}
+  {% for company in companies %}
+  <!-- İngilizce -->
+  <div class="row center">
+    <div class="box mr-4">
+      <h2><i class="fa fa-envelope" aria-hidden="true"></i></h2>
+      <h3 id="conText">Mail</h3>
+      <p>
+          {{company.Email}}
+      </p>
+  </div>
+  <div class="box mr-4">
+      <h2><i class="fa-solid fa-map-pin"></i></h2>
+      <h3 id="conText">Location</h3>
+      <p>
+        {{company.Adres}}
+      </p>
+  </div>
+  <div class="box">
+      <h2><i class="fa-solid fa-phone"></i></h2>
+      <h3 id="conText">Phone</h3>
+      <p>
+        {{company.Telefon}}
+      </p>
+  </div>
+</div>
+</div>
+{% endfor %}
+{% endif %}
+</div>
+{% endblock content %}

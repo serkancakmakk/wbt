@@ -1,0 +1,50 @@
+{% extends 'dashboard.html' %}
+{% load static %}
+{% block content %}
+<head>
+  <link rel="stylesheet" href="{% static 'css/add_image.css' %}">
+</head>
+<body>
+  <div class="blur"></div>
+  
+  <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+    
+    <div class="card">
+      <img src="" id="previewImage" class="rounded mx-auto d-block" style="max-width: 200px; display: none;">
+      <div class="card-body">
+        <h2 class="card-title">Fotoğraf Ekle / Add Image</h2>
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="{{ form.image.id_for_label }}">Fotoğraf / Image :</label>
+            {{ form.image }}
+          </div>
+          <button type="submit" class="btn btn-primary"><i class="fa-solid fa-arrow-up-from-bracket"></i> Yükle / Upload</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const fileInput = document.querySelector('#{{ form.image.auto_id }}');
+    const previewImage = document.querySelector('#previewImage');
+
+    fileInput.addEventListener('change', function() {
+      const file = fileInput.files[0];
+      if (file) {
+        const reader = new FileReader();
+
+        reader.addEventListener('load', function() {
+          previewImage.src = reader.result;
+          previewImage.style.display = 'block';
+        });
+
+        reader.readAsDataURL(file);
+      } else {
+        previewImage.src = '';
+        previewImage.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+{% endblock %}

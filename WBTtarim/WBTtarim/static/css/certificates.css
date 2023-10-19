@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Timmana&display=swap');
+#certificates {
+    filter: grayscale(100%);
+    width: 250px;
+    height: 250px;
+}
+
+@media screen and (max-width: 768px) {
+    #certificates {
+        width: 100px;
+        height: 100px;
+    }
+}
+#certificates:hover {
+    filter: grayscale(0%);
+    transition: 0.5s;
+    
+}
+.certificate-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-top: 10px;
+}
+#comName {
+    color: rgb(199, 228, 81);
+    transition: 0.13s;
+}
+#comName:hover {
+    color: white;
+    transition: 0.13s;
+}
+#wbtTag {
+    font-family: 'Timmana', sans-serif;
+    height: 200px;
+    transition: 0.5s;
+    background-color: linear-gradient(to right, rgb(0, 255, 119) , rgb(0, 167, 53));
+    width: 100%; /* Sayfanın tamamını kaplayacak şekilde genişlik ayarı */
+}
+@media screen and (max-width: 768px) {
+    #wbtTag {
+        transition: 0.5s;
+        height: 50px;
+        /* display: none !important; */
+    }
+}
+@media screen and (max-width: 415px) {
+    #wbtTag {
+        transition: 0.5s;
+        height: 150px;
+        /* display: none !important; */
+    }
+}
+#certificateDetail {
+    min-height: 800px;
+    display: block;
+    margin-left: auto;
+  margin-right: auto;;
+}

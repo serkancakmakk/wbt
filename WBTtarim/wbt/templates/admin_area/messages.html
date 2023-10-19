@@ -1,0 +1,61 @@
+{% extends 'dashboard.html' %}
+{% load static %}
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/message.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.6/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.6/js/jquery.dataTables.min.js"></script>
+</head>
+
+<div class ="container">
+<table>
+    <thead>
+      <tr>
+        <th scope="col">Konu</th>
+        <th scope="col">Mesaj</th>
+        <th scope="col">Email</th>
+        <th scope="col">Telefon</th>
+        <th scope="col">Durum</th>
+        <th scope="col">Değiştir</th>
+      </tr>
+    </thead>
+    {% for message in  messages %}
+    <tbody>
+      <tr class="{{message.durum}}">
+        <td data-label="Konu">{{message.konu}}</td>
+        <td data-label="Mesaj">{{message.mesaj}}</td>
+        <td data-label="Email">{{message.email}}</td>
+        <td data-label="Telefon">{{message.telefon}}</td>
+        <td data-label="Durum">{{message.durum}}</td>
+        <td data-label="Değiştir">
+            <form method="post" action="{% url 'update_message_status' message.id %}">
+                {% csrf_token %}
+                <a href="{% url 'update_message_status' message.id %}?new_status=Okundu">
+                    <i title ="Okundu" class="fa-solid fa-envelope-circle-check"></i>
+                </a>
+                <a href="{% url 'update_message_status' message.id %}?new_status=Geçersiz">
+                    <i title ="Geçersiz" class="fa-solid fa-times"></i>
+                </a>
+                <a href="{% url 'update_message_status' message.id %}?new_status=Ulaşılamadı">
+                    <i title ="Ulaşılamadı"class="fa-solid fa-question"></i>
+                </a>
+                <a href="{% url 'update_message_status' message.id %}?new_status=Beklemede">
+                    <i title ="Beklemeye Al" class="fa-solid fa-hourglass-end"></i>
+                </a>
+                <a href="{% url 'update_message_status' message.id %}?new_status=Okunmadı">
+                    <i title ="Okunmadı" class="fa-solid fa-envelope"></i>
+                </a>
+                <a href="{% url 'update_message_status' message.id %}?new_status=Silindi">
+                    <i title ="Sil"class="fa-solid fa-trash-can"></i>
+                </a>
+                
+            </form>
+        </td>
+      </tr>
+    </tbody>
+    {% endfor %}
+  </table>
+</div>
+{% endblock content %}

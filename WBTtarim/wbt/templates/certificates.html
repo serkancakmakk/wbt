@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/certificates.css' %}">
+</head>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Certificates</title>
+</head>
+<body>
+   
+        
+    <div id="wbtTag" class="d-flex align-items-center">
+        <h1 id="comName" class="mt-4 ml-4"><strong>WBT TARIM CERTIFICATES</strong></h1>
+    </div>
+        <div class="row justify-content-center mt-4">
+            {% for certificate in certificates %}
+            <div class="col-lg-3 col-md-4 col-sm-6 col-6"> <!-- Sütun düzeni ayarları güncellendi -->
+                <div class="certificate-item">
+                    <a href="{% url 'certificate_detail' certificate.name %}">
+                        <img id="certificates" src="{{ certificate.image.url }}" alt="{{ certificate.name }}">
+                    </a>
+                </div>
+            </div>
+            
+            {% endfor %}
+        </div>
+
+
+    
+    
+
+</body>
+</html>
+
+
+
+
+
+{% endblock content %}
+
+
+
+

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+<!-- Galeri alanı -->
+{% block content %}
+<head>
+  <link rel="stylesheet" href="{% static 'css/gallery.css' %}">
+</head>
+
+<div class="container align-items-center">
+  <h1> Home Decor</h1>
+  <div class="photogallery">
+      {% for item in gallery_items %}
+        <img class="wbtimg" src="{{ item.image.url }}" alt="Image">
+      {% endfor %}
+ </div>
+</div>
+  {% endblock content %}

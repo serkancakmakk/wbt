@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+
+<div class="container mt-5">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-6">
+            <div class="image-with-text">
+                <img src="{% static 'img/farm.jpg' %}" class="mt-4" alt="Resim Açıklaması">
+                <div class="image-text">
+                    <form id="login-form" method="POST">
+                        {% csrf_token %}
+                        <!-- Bootstrap form kontrol sınıfını kullanın -->
+                        <div class="text-center">
+                            <h1><strong>LOGIN</strong></h1>
+                            <div class="col-4 mx-auto">
+                                <input type="text" class="form-control" name="username" placeholder="Username">
+                            </div>
+                            <div class="col-4 mt-4 mx-auto">
+                                <input type="password" class="form-control" name="password" placeholder="Password">
+                            </div>
+                            <div class="mt-4">
+                                <!-- button etiketini kullanarak JavaScript ile login fonksiyonunu çağırmak -->
+                                <button type="submit" class="btn btn-primary col-6 mx-auto">Giriş</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="message-container">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="message alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>
+{% endblock content %}

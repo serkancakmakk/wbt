@@ -1,0 +1,162 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+<div class="table-container">
+    <div class="row justify-content-center">
+        <div class="col-lg-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th id ="thId" scope="col">#</th>
+                        <th scope="col">Servis Adı</th>
+                        <th scope="col">Açıklama</th>
+                        <th id="thDüzenle" scope="col">Düzenle</th>
+                        <th id="thSil" scope="col">Sil</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for service in services %}
+                    <tr>
+                        <th id ="thId" scope="col">#</th>
+                        <td>{{ service.servis_adi_tr }}</td>
+                        <td>{{ service.bilgi_tr|slice:":5" }}</td>
+                        <td class="text-center"><a href="{% url 'update_service' service.id %}"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                        <form method="POST">
+                            {% csrf_token %}
+                        <td class="text-center">
+                            <a href="#" class="delete-service" data-url="{% url 'delete_service' 0 %}" data-item-id="{{ service.id }}" data-item-type="service">
+                                <i class="fa-solid fa-trash" style="color: #ff0000;"></i>
+                            </a>
+                        </td>
+                    </form>
+               
+                    {% endfor %}
+                </tbody>
+            </table>
+
+
+
+        </div>
+        <div class="col-lg-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th id="thId" scope="col">#</th>
+                        <th id="thAdi" scope="col">Sertifika Adı</th>
+                        <th id="thSil" scope="col">Sil</th>
+                        <th id="thDüzenle" scope="col">Düzenle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for certificate in certificates %}
+                    <tr>
+                        <th id="thId" scope="row">{{ certificate.id }}</th>
+                        <td>{{ certificate.name }}</td>
+                        
+                        <td class="text-center">
+                            <a href="{% url 'update_certificate' certificate.id %}">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                        </td>
+                        <form method ="POST">
+                            {% csrf_token %}
+                        <td class="text-center">
+                            <a href="#" class="delete-service"
+                               data-url="{% url 'delete_certificate' 0 %}"
+                               data-item-id="{{ certificate.id }}" data-item-type="certificate">
+                                <i class="fa-solid fa-trash" style="color: #ff0000;"></i>
+                            </a>
+                        </td>
+                    </form>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="col-lg-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th id="thId" scope="col">#</th>
+                        <th scope="col">Fotoğraf</th>
+                        <th id="thDüzenle" scope="col">Düzenle</th>
+                        <th id="thSil" scope="col">Sil</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for image in gallery %}
+                    <tr>
+                        <th id="thId" scope="row">{{ image.id }}</th>
+                        <td><img src="{{ image.image.url }}" alt="{{ image.title }}" width="100" height="100"></td>
+                        <td class="text-center">
+                            <a href="#" class="delete-service">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                        </td>
+                        <td class="text-center">
+                            <form method ="POST">
+                                {% csrf_token %}
+                            <a href="#" class="delete-service"
+                               data-url="{% url 'delete_gallery' 0 %}"
+                               data-item-id="{{ image.id }}" data-item-type="image">
+                                <i class="fa-solid fa-trash" style="color: #ff0000;"></i>
+                            </a>
+                        </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Emin misiniz?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="deleteMessage">Bu öğeyi silmek istediğinizden emin misiniz?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                <button id="deleteButton" type="button" class="btn btn-danger btn-sm">Sil</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+        $('.delete-service').click(function(e) {
+            e.preventDefault();
+            var itemId = $(this).data('item-id');
+            
+            var confirmDelete = confirm("Bu öğeyi silmek istediğinizden emin misiniz?");
+            if (!confirmDelete) {
+                return;
+            }
+            
+            var csrfToken = $('[name=csrfmiddlewaretoken]').val();
+            var url = $(this).data('url').replace('0', itemId);
+            
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: {
+                    csrfmiddlewaretoken: csrfToken,
+                },
+                success: function(response) {
+                    // Silme işlemi başarılı, sayfayı yeniden yükleme gibi bir işlem yapabilirsiniz.
+                    window.location.reload();
+                },
+                error: function(response) {
+                    // Hata durumunda gerekli işlemleri burada yapabilirsiniz.
+                    console.error('Silme işlemi başarısız oldu:', response);
+                }
+            });
+        });
+    });
+    </script>
+    
+{% endblock content %}

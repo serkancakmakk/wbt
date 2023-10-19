@@ -1,0 +1,5 @@
+/* İçerikle çakışmaması için body'ye bir alt boşluk verin */
+#wbtCon {
+    margin-bottom: 50%; /* Footer yüksekliği kadar alt boşluk verin */
+    margin-top: 50%;
+}

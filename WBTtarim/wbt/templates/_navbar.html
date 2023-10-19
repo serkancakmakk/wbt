@@ -1,0 +1,137 @@
+{% load static %}
+{% if request.session.lang_code == 'tr' %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+      <img id="wbtNavImage" src="{% static 'img/herbs.png' %}" width="30" height="30" alt="">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link{% if request.path == '/tr/anasayfa/' %} active {% endif %}" href="{% url 'anasayfa' 'tr' %}">Anasayfa</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link {% if request.path == '/tr/hakkimizda/' %} active{% endif %}" 
+          href="{% if request.path == '/' %}{% url 'certificates' %}{% else %}{% url 'hakkimizda' 'tr' %}{% endif %}" 
+          id="hakkimizdaDropdown">
+            {% if request.path == '/certificates/' %} Sertifikalar{% else %} Hakkımızda {% endif %}
+            
+          </a>
+          <div class="dropdown-menu" aria-labelledby="hakkimizdaDropdown">
+            <a class="dropdown-item{% if request.path == '/tr/sertifikalarimiz/' %} active{% endif %}" href="{% if request.path == '/tr/hakkimizda/' %}{% url 'certificates' %}{% else %}{% url 'hakkimizda' 'tr' %}{% endif %}">{% if request.path == '/certificates/' %}Hakkımızda{% else %} Sertifikalar {% endif %} </a>
+            
+            
+            <!-- Diğer dropdown menü öğelerini buraya ekleyebilirsiniz -->
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link{% if request.path == '/tr/hizmetlerimiz/' %} active {% endif %}" href="{% url 'hizmetlerimiz' 'tr' %}">Servisler</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link{% if request.path == '/tr/galeri/' %} active {% endif %}" href="{% url 'galeri' 'tr' %}">Galeri</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link{% if request.path == '/tr/iletisim/' %} active {% endif %}" href="{% url 'iletisim' 'tr' %}">İletişim</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {% if request.session.lang_code == 'tr' %}
+              <i class="flag-icon flag-icon-tr"></i> Türkçe
+            {% elif request.session.lang_code == 'en' %}
+              <i class="flag-icon flag-icon-us"></i> English
+            {% else %}
+              Language
+            {% endif %}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown" >
+            <a class="dropdown-item" href="{% url 'set_language' 'en' %}">
+              <i class="flag-icon flag-icon-us"></i> English
+            </a>
+            <a class="dropdown-item" href="{% url 'set_language' 'tr' %}">
+              <i class="flag-icon flag-icon-tr"></i> Türkçe
+            </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+{% else %} 
+<!-- İngilizce İçerik -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+      <img id="wbtNavImage" src="{% static 'img/herbs.png' %}" width="30" height="30" alt="">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link{% if request.path == '/en/home/' %} active {% endif %}" href="{% url 'home' 'en' %}">Home</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link {% if request.path == '/en/about/' or request.path == '/certificates/' %} active{% endif %}" 
+          href="{% if request.path == '/certificates/' %}{% url 'certificates' %}{% else %}{% url 'about' 'en' %}{% endif %}" 
+          id="hakkimizdaDropdown">
+            {% if request.path == '/certificates/' %} Certificates{% else %} About {% endif %}
+            
+          </a>
+          <div class="dropdown-menu" aria-labelledby="hakkimizdaDropdown">
+            <a class="dropdown-item{% if request.path == '//' %} active{% endif %}" href="{% if request.path == '/en/about/' %}{% url 'certificates' %}{% else %}{% url 'about' 'en' %}{% endif %}">{% if request.path == '/certificates/' %}About{% else %} Certificates {% endif %} </a>
+            
+            
+            <!-- Diğer dropdown menü öğelerini buraya ekleyebilirsiniz -->
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link{% if request.path == '/en/services/' %} active {% endif %}" href="{% url 'services' 'en' %}">Services</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link{% if request.path == '/en/gallery/' %} active {% endif %}" href="{% url 'gallery' 'en' %}">Gallery</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link{% if request.path == '/en/contact/' %} active {% endif %}" href="{% url 'contact' 'en' %}">Contact</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {% if request.session.lang_code == 'tr' %}
+              <i class="flag-icon flag-icon-tr"></i> Türkçe
+            {% elif request.session.lang_code == 'en' %}
+              <i class="flag-icon flag-icon-us"></i> English
+            {% else %}
+              Language
+            {% endif %}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown" >
+            <a class="dropdown-item" href="{% url 'set_language' 'en' %}">
+              <i class="flag-icon flag-icon-us"></i> English
+            </a>
+            <a class="dropdown-item" href="{% url 'set_language' 'tr' %}">
+              <i class="flag-icon flag-icon-tr"></i> Türkçe
+            </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    {% endif %}
+    <script>
+      $(document).ready(function() {
+          // Dropdown menüyü üzerine gelince aç
+          $(".dropdown").hover(
+              function() {
+                  $('.dropdown-menu', this).stop(true, true).fadeIn("fast");
+                  $(this).toggleClass('open');
+              },
+              function() {
+                  $('.dropdown-menu', this).stop(true, true).fadeOut("fast");
+                  $(this).toggleClass('open');
+              }
+          );
+      });
+    </script>

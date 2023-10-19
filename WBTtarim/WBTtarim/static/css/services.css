@@ -1,0 +1,112 @@
+:root {
+    --white: #ffffff;
+    --lightGray: #eeeeee;
+    --green: #0ef61d;
+    --gray: #3a4750;
+    --darkGray: #303841;
+  }
+  .card-container {
+    display: flex;
+    flex-wrap: wrap; /* Resimlerin yan yana sıralanmasını ve alt alta geçmesini engeller */
+    justify-content: center; /* Resimleri ortalamak için */
+  }
+  .card {
+    position: relative;
+    width: 400px;
+    height: 250px;
+    border-radius: 12px;
+    margin: 50px 50px;
+    box-shadow: 3px 3px 10px -1px rgba(0, 0, 0, 0.35);
+    transition: 0.5s ease;
+    overflow: hidden; /* Kart içeriğini gizlemek için */
+  }
+  
+  .card .wbtimg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Resmi kartın boyutlarına sığdırmak için */
+    border-radius: 12px; /* Resme de border-radius ekleyerek köşelerin oval olmasını sağlayabilirsiniz */
+  }
+  
+  .card-title {
+    position: absolute;
+    bottom: -10px;
+    left: 10px;
+    color: rgb(60, 60, 60);
+    border-bottom: 2px var(--green) solid;
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    width: 400px;
+    height: 250px;
+    margin-top: 0px;
+    border-radius: 12px;
+    background-color: rgba(32, 32, 32, 0.5);
+    backdrop-filter: blur(10px);
+    transition: 0.5s ease-out;
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* İçeriği overlay'ın en altına hizala */
+
+  }
+
+.overlay-text {
+    /* position: absolute; */
+    /* top: 50px; */
+    /* margin: -20px 50px; */
+    color: var(--white);
+}
+
+.overlay-text h2 {
+    /* Diğer stiller */
+    font-size: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+    text-align: center;
+    margin-top: 5px; /* Yükseklik boşluğunu kullanarak en alta yerleştir */
+    margin-bottom: 20px; /* İstenen boşluk bırakmak için */
+
+  }
+
+  .overlay button {
+    padding: 0.5rem 1rem;
+    background-color: var(--green);
+    border: none;
+    border-radius: 5px;
+    color: var(--darkGray);
+    font-size: 15px;
+    font-weight: 700;
+    transition: 0.4s ease;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  .overlay button:hover {
+    filter: brightness(0.65);
+  }
+  
+  .overlay button:active {
+    filter: brightness(0.5);
+    transform: scale(0.97);
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+  }
+  
+  .overlay:hover {
+    opacity: 1;
+  }
+  @media (max-width: 576px) {
+    .card {
+      width: 100%; /* Kartın genişliğini tam ekran genişliğine uyacak şekilde ayarlıyoruz */
+    }
+  
+    .overlay-text {
+        margin: 0 5px; /* Overlay içeriğinin kenarlardan daha az boşluk ayarlayabilirsiniz */
+        margin-right: 180px; /* Metni sağdan 160 piksel uzakta tutuyoruz */
+      }
+    }

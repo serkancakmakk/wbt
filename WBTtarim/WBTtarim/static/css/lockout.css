@@ -1,0 +1,28 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+}
+
+.loading-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.spinner-border {
+    width: 5rem; /* Boyutu ayarlayabilirsiniz */
+    height: 5rem; /* Boyutu ayarlayabilirsiniz */
+    border-width: 0.25em;
+    margin-bottom: 10px; /* Başlıktan bir boşluk bırakmak için */
+}
+
+h6 {
+    margin-top: 5px; /* Spiner'dan bir boşluk bırakmak için */
+}
+.text-info {
+    color: red !important;
+}

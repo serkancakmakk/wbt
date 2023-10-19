@@ -1,0 +1,45 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+
+<div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Update Certificate</h5>
+            <div class="card-header align-items-center">
+                <div class="d-flex">
+                    {% if certificates.image %}
+                    <div class="mr-3">
+                        <p>Image</p>
+                        <img src="{{ certificates.image.url }}" alt="{{ certificates.name }}" style="height: 100px" class="img-fluid">
+                    </div>
+                    {% endif %}
+                    {% if certificates.document %}
+                    <div>
+                        <p>Document</p>
+                        <img src="{{ certificates.document.url }}" alt="{{ certificates.name }}" style="height: 100px" class="img-fluid">
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="name" class="sr-only">Name</label>
+                    <input type="text"  class="form-control-plaintext" id="staticName" name="name"value="{{ certificates.name }}">
+                </div>
+                <div class="form-group">
+                    <label for="document" class="sr-only">Document</label>
+                    {{ form.document }}
+                </div>
+                <div class="form-group">
+                    <label for="image" class="sr-only">Image</label>
+                    {{ form.image }}
+                </div>
+                <button type="submit" class="btn btn-primary">Update Certificate</button>
+            </form>
+        </div>
+        
+    </div>
+</div>
+
+{% endblock content %}

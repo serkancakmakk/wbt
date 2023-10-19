@@ -1,0 +1,34 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+<div id="comCon" class="container ml-6">
+    <a href="{% url 'export_excel' %}" class="btn btn-primary ml-20">Excele Aktar</a>
+    <table class="table-sm ml-20 table-striped">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Kullanıcı</th>
+        <th scope="col">İşlem</th>
+        <th scope="col">Tarih</th>
+        <th scope="col">Sil</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for log in logs %}
+        <tr>
+          <td>{{ log.id }}</td>
+          <td>{{ log.kullanici }}</td>
+          <td>{{ log.hareket }}</td>
+          <td>{{ log.tarih|date:"d.m.Y H:i:s" }}</td>
+          <td>
+            <form method="POST" action="{% url 'log_sil' log.id %}">
+              {% csrf_token %}
+              <button class="btn-sm btn-primary" type="submit">Sil</button>
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+</div>
+{% endblock content %}

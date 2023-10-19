@@ -1,0 +1,79 @@
+{% extends 'dashboard.html' %}
+{% load static %}
+{% block content %}
+<head>
+  <link rel="stylesheet" href="{% static 'css/company.css' %}">
+  <link rel="stylesheet" href="{% static 'css/add_services.css' %}">
+</head>
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-8 col-sm-2">
+      <form method="POST" action="{% url 'company' %}">
+        {% csrf_token %}
+        <label class="text-center" for="ourVizion"><h4>Our Vizion [EN]</h4></label>
+        <textarea name="{{ form.Vizion.name }}" class="form-control">{{ form.Vizion.value }}</textarea>
+
+        <label for="exampleInputEmail1">Our Mission [EN]</label>
+        <textarea name="{{ form.Mission.name }}" class="form-control">{{ form.Mission.value }}</textarea>
+        
+        <label for="exampleInputEmail1">Vizyonumuz [TR]</label>
+        <textarea name="{{ form.Vizyon.name }}" class="form-control">{{ form.Vizyon.value }}</textarea>
+
+        <label for="exampleInputEmail1">Misyonumuz [TR]</label>
+        <textarea name="{{ form.Misyon.name }}" class="form-control">{{ form.Misyon.value }}</textarea>
+   
+
+      <div class="input-group-prepend mt-4">
+        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-phone"></i></span>
+        <input type="text" name="{{ form.Telefon.name }}" value="{{ form.Telefon.value }}" class="form-control">
+      </div>
+      <div class="input-group-prepend mt-4">
+        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-at"></i></span>
+        <input type="text" name="{{ form.Email.name }}" value="{{ form.Email.value }}" class="form-control">
+      </div>
+
+      <div class="input-group-prepend mt-4">
+        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-location-dot"></i></span>
+        <input type="textarea" name="{{ form.Adres.name }}" value="{{ form.Adres.value }}" class="form-control">
+      </div>
+      <div class="input-group-prepend mt-4">
+        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-map-location-dot"></i></i></span>
+        <input type="textarea" name="{{ form.google_maps.name }}" value="{{ form.google_maps.value }}" class="form-control">
+        
+      </div>
+      <button type="submit" class="btn btn-primary mt-4">Kaydet</button>
+    </form>
+  </div>
+{% if messages %}
+<div class="toast align-items-center fade show success" role="alert" aria-live="assertive" aria-atomic="true">
+  <div class="toast-content">
+    <div class="content-body d-flex align-items-center">
+      <div class="icon me-4">
+        <i class="fa-solid fa-check-double d-flex"></i>
+      </div>
+      <div class="d-flex justify-content-between w-100">
+        <div>
+          <h5 class="fw-bold mb-1">Başarılı</h5>
+          {% for message in messages %}
+          <p class="text-muted mb-0">{{ message }}</p>
+          {% endfor %}
+        </div>
+        <button type="button" class="btn-close" data-dismiss="toast" aria-label="Close"></button>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var toast = document.querySelector('.toast');
+
+  setTimeout(function () {
+    toast.classList.remove('show');
+  }, 5000); // 5 saniye sonra toast bildirimi kaybolacak
+});
+</script>
+
+
+{% endblock content %}

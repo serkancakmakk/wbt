@@ -1,0 +1,36 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700|Montserrat:400,700);
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css);
+section#counter-stats {
+	display: flex;
+	justify-content: center;
+	margin-top: 100px;
+}
+@keyframes rotateAndBack {
+  0% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(180deg);
+  }
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+.stats {
+  margin-top: 0px;
+  text-align: center;
+  font-size: 35px;
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 150px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Daha belirgin bir gölge eklemek */
+  animation: rotateAndBack 2s ease-in-out; /* Keyframe animasyonu uygula */
+}
+
+.stats .fa-solid,
+.stats .fa-brands {
+  color: #057f21;
+  font-size: 60px;
+  margin-top: 15px;
+}
+/*/ end count stats /*/

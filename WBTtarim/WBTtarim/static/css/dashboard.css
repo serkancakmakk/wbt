@@ -1,0 +1,269 @@
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+.sidebar {
+  position: fixed;
+  margin-top: -25px;
+  left: -240px;
+  width: 240px;
+  height: 100vh;
+  background: #18b134;
+  transition: all .5s ease;
+}
+
+.sidebar header {
+  color: white;
+  text-align: center;
+  font-size: 28px;
+  line-height: 70px;
+  background: #1b1b1b;
+  font-family: 'Montserrat';
+}
+
+.sidebar a {
+  display: block;
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  height: 50px;
+  line-height: 65px;
+  width: 100%;
+  padding-left: 30px;
+  border-bottom: 1px solid rgba(255, 255, 255, .1);
+  border-top: 1px solid black;
+  border-left: 5px solid transparent;
+  box-sizing: border-box;
+  transition: all .5s ease;
+  font-family: 'Opeb Sans', sans-serif;
+}
+
+.sidebar a:hover {
+  color: #ffffff;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+  border-left: 5px solid #ffffff;
+  color: #ffffff;
+}
+
+.sidebar a i {
+  font-size: 23px;
+  margin-right: 16px;
+}
+
+.sidebar a span {
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+#check {
+  display: none;
+}
+
+label #btn,
+label #cancel {
+  position: absolute;
+  cursor: pointer;
+  background: #262626;
+  height: 45px;
+  width: 45px;
+  text-align: center;
+  line-height: 45px;
+  color: white;
+  font-size: 29px;
+  margin: 15px 30px;
+  border: 1px solid #262626;
+  transition: all .5s ease;
+}
+
+label #cancel {
+  opacity: 0;
+  visibility: hidden;
+}
+
+#check:checked~label #btn {
+  margin-left: 245px;
+  opacity: 0;
+  visibility: hidden;
+}
+
+#check:checked~label #cancel {
+  margin-left: 245px;
+  margin-top: -7px;
+  opacity: 1;
+  visibility: visible;
+}
+
+#check:checked~.sidebar {
+  left: 0px;
+}
+
+@media (max-width: 860px) {
+  .sidebar {
+    height: 100vh;
+    width: 70px;
+    left: 0;
+    margin: 100px 0;
+  }
+
+  header,
+  #btn,
+  #cancel {
+    display: none;
+  }
+
+  span {
+    position: absolute;
+    margin-left: 23px;
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@media (max-width: 450px) {
+  .sidebar {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    height: auto;
+    width: 100%;
+    left: 0;
+    margin: 20px 0;
+  }
+
+  .sidebar header {
+    display: none;
+  }
+
+  .sidebar a {
+    display: inline-block;
+    width: auto;
+    border: none;
+    padding: 8px;
+  }
+
+  .sidebar a span {
+    display: none;
+  }
+
+  .sidebar a i {
+    margin: 0;
+  }
+
+  .sidebar a.active {
+    border-left: none;
+  }
+}
+
+/* Tabloyu ortada tutmak için gerekli CSS */
+.table-container {
+  margin-bottom: 200px; /* Tabloyu biraz daha yukarı almak için değeri artırabilirsiniz */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Sayfanın yüksekliği kadar olan alanda ortada durur */
+}
+
+.ml-20 {
+  margin-left: 200px;
+}
+
+/* Tablo stilini belirlemek için gerekli CSS */
+.table-striped {
+  border-collapse: collapse;
+}
+
+/* Tablo hücrelerine çerçeve eklemek için */
+.table-striped td,
+.table-striped th {
+  border: 1px solid #000;
+  padding-bottom: 1px; /* Tablo elemanları arasındaki boşluğu 4px olarak ayarladık */
+}
+
+@media (max-width: 450px) {
+  .ml-20 {
+    margin-left: 0; /* Sol kenardan uzaklığı sıfıra ayarla */
+  }
+
+  .table-striped {
+    margin: 0 auto; /* Tabloyu yatayda ortala */
+  }
+}
+
+@media (max-width: 390px) {
+  .table-container {
+    margin-left: 0; /* Sol kenardan uzaklığı sıfıra ayarla */
+  }
+
+  .table-sm {
+    margin: 0 auto; /* Tabloyu yatayda ortala */
+  }
+}
+
+#btnHizala {
+  margin-top: 130px;
+}
+
+.sidebar .dropdown-item {
+  color: white;
+  background-color: green;
+  border-bottom: none;
+}
+
+.sidebar .dropdown-item:hover {
+  color: white;
+  background-color: red;
+  border-bottom: none;
+}
+
+.sidebar .dropdown-item a {
+  color: white;
+  background-color: red;
+  border-bottom: none;
+}
+
+.table-container {
+  display: flex;
+  margin-left: auto;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden; /* Yatayda kaydırmayı engeller */
+}
+
+#thDüzenle {
+  width: 100px;
+  text-align: center;
+}
+
+#thSil {
+  width: 100px;
+  text-align: center;
+}
+
+#thId{
+  width: 50px;
+  text-align: center;
+}
+#thAdi{
+  width: 50px;
+  text-align: center;
+}
+/* Çift sıradaki tablo hücrelerinin arka plan rengini değiştir */
+.table-container .table-striped tbody tr:nth-child(even) {
+  background-color: #c6eaff;
+}
+.table-container table thead {
+  background-color: #c6eaff;
+}
+/* Tek sıradaki tablo hücrelerinin arka plan rengini değiştir */
+.table-container .table-striped tbody tr:nth-child(odd) {
+  background-color: #18fbac;
+}
+#check:checked~.table-container {
+  margin-left: 150px;
+  transition: all .5s ease;
+}

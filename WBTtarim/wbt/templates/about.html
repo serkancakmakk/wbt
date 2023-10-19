@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% if request.session.lang_code == 'tr' %}
+<title>WBT | Hakkımızda</title>
+{% else %}
+<title>WBT | About</title>
+{% endif %}
+<head>
+  <link rel="stylesheet" href="{% static 'css/about.css' %}">
+</head>
+<div class="container mt-5">
+{% if request.session.lang_code == 'tr' %}
+{% for company in companies %}
+  <div class="card-group wbt-cards">
+    <div class="card">
+      <div class="card-img-body">
+      <img class="card-img" src="https://picsum.photos/500/230" alt="Card image cap">
+      </div>
+      <div class="card-body">
+        <h4 class="card-title">Misyonumuz</h4>
+        <p class="card-text">{{ company.Misyon }}</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img-body">
+        <img class="card-img" src="https://picsum.photos/536/354" alt="Card image cap">
+      </div>
+      <div class="card-body">
+        <h4 class="card-title">Vizyonumuz</h4>
+        <p class="card-text">{{ company.Vizyon }}</p>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+{% else %}
+{% for company in companies %}
+<div class="card-group wbt-cards">
+  <div class="card">
+    <div class="card-img-body">
+    <img class="card-img" src="https://picsum.photos/500/230" alt="Card image cap">
+    </div>
+    <div class="card-body">
+      <h4 class="card-title">Our mission</h4>
+      <p class="card-text">{{ company.Vizion }}</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-img-body">
+      <img class="card-img" src="https://picsum.photos/400/200" alt="Card image cap">
+    </div>
+    <div class="card-body">
+      <h4 class="card-title">Our vision</h4>
+      <p class="card-text">{{ company.Mission }}</p>
+    </div>
+  </div>
+</div>
+{% endfor %}
+{% endif %}
+
+</div> <!--end container-->
+{% endblock content %}

@@ -1,0 +1,94 @@
+{% extends 'dashboard.html' %}
+{% load static %}
+{% block content %}
+<head>
+  <link rel="stylesheet" href="{% static 'css/add_services.css' %}">
+</head>
+  <div class="blur"></div>
+<div class="container d-flex justify-content-center align-items-center">
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="d-flex flex-wrap justify-content-center">
+      <div class="card m-2" style="width: auto;">
+        <i id="wbtInfo" class="fa-regular fa-circle-question" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
+        <div class="card-body">
+          <h5 class="card-title">Servis Ekle</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Servis Adı</h6>
+          <p class="card-text">{{form.servis_adi_tr}}</p>
+          <h6 class="card-subtitle mb-2 text-muted">Servis Bilgi</h6>
+          <p class="card-text">{{form.bilgi_tr}}</p>
+        </div>
+      </div>
+      <div class="card m-2" style="width: auto;">
+        <i id="wbtInfo" class="fa-regular fa-circle-question" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
+        <div class="card-body">
+          <h5 class="card-title">Add Service</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Service Name</h6>
+          <p class="card-text">{{form.service_name_en}}</p>
+          <h6 class="card-subtitle mb-2 text-muted">Service İnfo</h6>
+          <p class="card-text">{{form.info_en}}</p>
+        </div>
+      </div>
+    </div>
+    <label for="{{ form.image.id_for_label }}">Fotoğraf / Image :</label>
+    {{ form.image }}
+    <button type="submit" class="btn btn-primary mt-2">Kaydet</button>
+  </form>
+</div>
+<!--MODAL AREA !-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Bilgi</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <li>
+            <strong>[EN]</strong>
+            Listed Only on Your English Pages
+          </li>
+        <li>
+            <strong>[TR]</strong> Sadece Türkçe Sayfalarınızda Listelenir
+          
+        </li>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-info" data-bs-dismiss="modal">Kapat</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% if messages %}
+  <div class="toast align-items-center fade show success" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-content">
+      <div class="content-body d-flex align-items-center">
+        <div class="icon me-4">
+          <i class="fa-solid fa-check-double d-flex"></i>
+        </div>
+        <div class="d-flex justify-content-between w-100">
+          <div>
+            <h5 class="fw-bold mb-1">Başarılı</h5>
+            {% for message in messages %}
+            <p class="text-muted mb-0">{{ message }}</p>
+            {% endfor %}
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var toast = document.querySelector('.toast');
+
+    setTimeout(function () {
+      toast.classList.remove('show');
+    }, 5000); // 5 saniye sonra toast bildirimi kaybolacak
+  });
+</script>
+  
+</body>
+  {% endblock content %}

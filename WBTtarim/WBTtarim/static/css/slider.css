@@ -1,0 +1,201 @@
+/* Anasayfada bulunan slider için
+/* WBT */
+.WBT {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    z-index: 0;
+  }
+  /* WBT carousel */
+  .carousel {
+    height: calc(100% - 90px);
+    z-index: 1;
+  }
+  .carousel-inner,
+  .carousel-item {
+    height: 100%;
+  }
+  .carousel-content {
+    position: relative;
+    height: 100%;
+  }
+  .carousel-indicators,
+  .carousel-controls {
+    position: absolute;
+    bottom: 0;
+    width: 50%;
+    height: 90px;
+    border-left: 1px solid hsla(0, 0%, 0%, 1);
+  }
+  .carousel-indicators {
+    left: 0;
+    right: 50%;
+    margin: 0;
+  }
+  .carousel-indicators [data-bs-target] {
+    position: relative;
+    top: 50%;
+    width: 15px;
+    height: 15px;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    border-radius: 50%;
+    border: 1px solid hsla(0, 0%, 0%, 1);
+    background-color: hsla(0, 0%, 100%, 1);
+    transform: translateY(-50%);
+  }
+  .carousel-indicators .active {
+    background-color: hsla(0, 0%, 0%, 1);
+  }
+  .carousel-controls {
+    right: 0;
+    bottom: 0;
+  }
+  .carousel-control-next,
+  .carousel-control-prev {
+    width: 50%;
+    height: 100%;
+  }
+  .carousel-control-prev-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/%3e%3c/svg%3e");
+  }
+  .carousel-control-next-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+  }
+  .carousel-tools {
+    position: absolute;
+    left: 0;
+    bottom: -90px;
+    width: 100%;
+    height: 90px;
+    border-top: 1px solid hsla(0, 0%, 0%, 1);
+    border-bottom: 1px solid hsla(0, 0%, 0%, 1);
+    background-color: hsla(0, 0%, 100%, 1);
+    overflow: hidden;
+  }
+  @media (max-width: 991px) {
+    .carousel-indicators,
+    .carousel-controls {
+      width: 50%;
+    }
+    .carousel-indicators {
+      left: 0;
+      right: 50%;
+    }
+  }
+  /* Vertical carousel */
+  .carousel-item-prev:not(.carousel-item-end),
+  .active.carousel-item-start {
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+  .carousel-item-next:not(.carousel-item-start),
+  .active.carousel-item-end {
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+  }
+  .jello-horizontal {
+    -webkit-animation: jello-horizontal 0.9s
+      cubic-bezier(0.175, 0.885, 0.32, 1.275) 3 both;
+    animation: jello-horizontal 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275) 3
+      both;
+  }
+  @keyframes jello-horizontal {
+    0% {
+      -webkit-transform: scale3d(1, 1, 1);
+      transform: scale3d(1, 1, 1);
+    }
+    30% {
+      -webkit-transform: scale3d(1.25, 0.75, 1);
+      transform: scale3d(1.25, 0.75, 1);
+    }
+    40% {
+      -webkit-transform: scale3d(0.75, 1.25, 1);
+      transform: scale3d(0.75, 1.25, 1);
+    }
+    50% {
+      -webkit-transform: scale3d(1.15, 0.85, 1);
+      transform: scale3d(1.15, 0.85, 1);
+    }
+    65% {
+      -webkit-transform: scale3d(0.95, 1.05, 1);
+      transform: scale3d(0.95, 1.05, 1);
+    }
+    75% {
+      -webkit-transform: scale3d(1.05, 0.95, 1);
+      transform: scale3d(1.05, 0.95, 1);
+    }
+    100% {
+      -webkit-transform: scale3d(1, 1, 1);
+      transform: scale3d(1, 1, 1);
+    }
+  }
+  /* Flex slider */
+  .slider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin-top: 154px;
+  }
+  .item {
+    position: relative;
+    display: flex;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    justify-content: center;
+    align-items: center;
+    flex-basis: 25%;
+    transition: all 0.75s;
+    transform-origin: center;
+    will-change: transform;
+    filter: grayscale(100); 
+  }
+  .number {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: hsla(0, 0%, 100%, 0.95);
+    mix-blend-mode: screen;
+    transition: background 0.75s;
+  }
+  .number span {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: clamp(2rem, 20vw, 10rem);
+    line-height: 1;
+    color: hsla(0, 0%, 0%, 1);
+    transition: color 1s;
+  }
+  .item:hover {
+    flex-basis: 100%;
+    filter: grayscale(0);
+  }
+  .item:hover .number {
+    background-color: hsla(0, 0%, 100%, 0);
+  }
+  .item:hover .number span {
+    color: hsla(0, 0%, 0%, 0);
+  }
+  @media (max-width: 46em) {
+    .slider {
+      height: 100%;
+      flex-flow: column;
+      margin-top: 0px;
+    }
+    .item {
+      width: 100%;
+      height: 25%;
+    }
+    .item:hover {
+      flex-grow: 100%;
+      cursor: pointer;
+    }
+  }

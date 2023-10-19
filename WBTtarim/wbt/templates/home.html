@@ -1,0 +1,177 @@
+{% extends 'base.html' %}
+{% load static %} 
+ {% block content %}
+{% if request.session.lang_code == 'tr' %}
+<title>WBT | Anasayfa</title>
+{% else %}
+<title>WBT | Homepage</title>
+{% endif %}
+ <head>
+  
+
+ </head>
+
+ <div class="col mt-4">
+ <!-- Google fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Wix+Madefor+Display:wght@400;600;800&display=swap" rel="stylesheet">
+<!-- Hero -->
+<section class="WBT">
+  <div id="WBTCarousel" class="vertical carousel slide" data-bs-interval="false">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="carousel-content d-flex justify-content-center align-items-center">
+          <div class="slider">
+            <div class="item item-1" style="background-image: url({% static 'img/farm.jpg' %});">
+              <div class="number"><span>WBT</span></div>
+            </div>
+            <div class="item item-2" style="background-image: url(https://images.pexels.com/photos/2549573/pexels-photo-2549573.jpeg);">
+              <div class="number"><span>TARIM</span></div>
+            </div>
+            <div class="item item-3" style="background-image: url(https://images.pexels.com/photos/6678614/pexels-photo-6678614.jpeg);">
+              <div class="number"><span>HERBS</span></div>
+            </div>
+            <div class="item item-4" style="background-image: url(https://images.pexels.com/photos/1615812/pexels-photo-1615812.jpeg);">
+              <div class="number"><span>SPİCES</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+</section>
+<!--WHO WE ARE ALANI BAŞLANGIÇ -->
+<div class="we-are-block">
+
+  <div id="about-us-section">
+
+    <div class="about-us-image">
+
+      <img src="https://digitalupgrade.com/images/lobbyimage_1.jpg" width="808" height="458" alt="Lobby Image">
+
+    </div>
+
+    <div class="about-us-info">
+
+      <h2>We are Digital Upgrade</h2>
+
+      <p>Digital Upgrade, located in Evansville, IN, makes it easy for businesses to create and manage their digital presence and logistics, meaning we can make your business more efficient and profitable! We believe in our community and want to help our local business economy grow and expand. We believe in our clients, and want to assist in their digital success. The D-UP team grades ourselves on outcomes, not on sales.</p>
+
+      <a href="#" title="About Us Button">ABOUT US</a>
+
+    </div>
+
+  </div>
+
+  <div id="history-section">
+
+    <div class="history-image">
+
+      <img src="https://digitalupgrade.com/images/building_pic.jpg" width="951" height="471" alt="Building Pic">
+
+    </div>
+
+    <div class="history-info">
+
+      <h2>Preserving Local History</h2>
+
+      <p>In 2018, technology companies, Desktop Doctors & Digital Upgrade found a new place to call home, at 816 N. 9th Ave. Since the takeover of the 118-year-old building (formally Stippler Tool & Supply and Crown Chair Company), there have been many renovations completed to preserve this local piece of Evansville, IN history.</p>
+
+      <a href="#" title="History Button">HISTORY</a>
+
+    </div>
+
+  </div>
+
+</div>
+<!--WHO WE ARE ALANI bitiş -->
+<!-- start count stats -->
+
+<section id="counter-stats" class="wow fadeInRight" data-wow-duration="1.4s">
+	<div class="container">
+		<div class="row">
+
+			<div class="col-lg-3 stats">
+				<i class="fa-solid fa-users" aria-hidden="true"></i>
+				<div class="counting" data-count="900000">0</div>
+				<h5>Happy Customers</h5>
+			</div>
+
+			<div class="col-lg-3 stats">
+				<i class="fa-solid fa-reply" aria-hidden="true"></i>
+				<div class="counting" data-count="{{mesaj_sayisi}}">0</div>
+				<h5>Reply</h5>
+			</div>
+
+			<div class="col-lg-3 stats">
+				<i class="fa-brands fa-pagelines" aria-hidden="true"></i>
+				<div class="counting" data-count="{{servis_sayisi}}">0</div>
+				<h5>Services</h5>
+			</div>
+
+			<div class="col-lg-3 stats">
+				<i class="fa-solid fa-ship" aria-hidden="true"></i>
+				<div class="counting" data-count="999">0</div>
+				<h5>Export / Import </h5>
+			</div>
+
+
+		</div>
+		<!-- end row -->
+	</div>
+	<!-- end container -->
+
+</section>
+
+<!-- end cont stats -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      var companyPassword = "sirket123"; // Şirketinizin özel şifresi
+      
+      document.addEventListener("keydown", function(event) {
+          if (event.key === "Alt") {
+              var userInput = prompt("Lütfen Şirket Şifresini Girin:");
+              if (userInput !== null && userInput === companyPassword) {
+                  // Doğru şifre girildiğinde yönlendirme yapabilirsiniz
+                  window.location.href = "{% url 'dashboard' %}";
+              } else {
+                  alert("Geçersiz Şifre!");
+              }
+          }
+      });
+  });
+</script>
+    <script>
+// number count for stats, using jQuery animate
+
+$('.counting').each(function() {
+  var $this = $(this),
+      countTo = $this.attr('data-count');
+  
+  $({ countNum: $this.text()}).animate({
+    countNum: countTo
+  },
+
+  {
+
+    duration: 3000,
+    easing:'linear',
+    step: function() {
+      $this.text(Math.floor(this.countNum));
+    },
+    complete: function() {
+      $this.text(this.countNum);
+      //alert('finished');
+    }
+
+  });  
+  
+
+});
+    </script>
+</section>
+
+
+  {% endblock content %}
+
+
+

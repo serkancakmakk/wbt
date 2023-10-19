@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if messages %}
+  <div class="container mt-2">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        {% for message in messages %}
+          <div class="alert alert-danger text-center">
+            <i class="fa-solid fa-triangle-exclamation fa-shake fa-2xl mr-4"></i>
+              <span class="text-center">{{ message }}</span>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+
+
+
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="d-flex flex-column align-items-center mb-3">
+        <i class="fas fa-lock fa-2x"></i> <!-- Kilit ikonu -->
+        <h3 class="mt-2">Kayıt Formu</h3>
+      </div>
+      <form method="post">
+        {% csrf_token %}
+        <div class="mb-3 form-group">
+          <input type="text" class="form-control" name="username" placeholder="Kullanıcı Adı">
+        </div>
+        <div class="mb-3 form-group">
+          <input type="text" class="form-control" name="email" placeholder="Email">
+        </div>
+        <div class="mb-3 form-group">
+          <input type="text" class="form-control" name="password1" placeholder="Şifre">
+        </div>
+        <div class="mb-3 form-group">
+          <input type="text" class="form-control" name="password2" placeholder="Şifre Tekrar">
+        </div>
+        <div class="mb-3 form-group">
+          <input type="submit" value="Kayıt Ol" class="btn btn-primary">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+{% endblock content %}

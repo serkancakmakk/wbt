@@ -1,0 +1,26 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/service_detail.css' %}">
+</head>
+ <div class="container"> 
+<div class = "servisCon">
+{{servis.servis_adi_tr}}
+<h1 class="mt-4">{{servis.id}} </h1>
+</div>
+</div>
+<div class="card">
+    <div class="content">
+      <div class="image-wrapper">
+        <img src="{{ servis.image.url }}" alt="Image">
+        <div class="light"></div>
+      </div>
+      <div class="text">
+        <h2>Metin Başlığı</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vehicula justo non justo scelerisque, nec dapibus elit dictum.</p>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

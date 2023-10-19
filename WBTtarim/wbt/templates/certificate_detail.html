@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/certificates.css' %}">
+</head>
+<div id="wbtTag" class="d-flex align-items-center justify-content-center">
+    <h1 id="comName"><strong>WBT TARIM "{{certificate.name|upper}}" {% if request.session.lang_code == 'tr' %}SERTİFİKASI{% else %}CERTIFICATES{% endif %}</strong></h1>
+</div>
+<div class="container mt-4">
+            <div class="text-center">
+                <img id ="certificateDetail" src="{{ certificate.image.url }}" alt="{{ certificate.name }}">
+    </div>
+</div>
+{% endblock content %}
